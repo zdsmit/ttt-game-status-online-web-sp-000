@@ -6,14 +6,20 @@ def position_taken?(board, index)
 end
 
 # Define your WIN_COMBINATIONS constant
-WIN_COMBINATIONS = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7], [2, 5, 8], [2, 4, 6], [3, 4, 5], [6, 7, 8]]
+WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [0, 4, 8], [1, 4, 7], [2, 5, 8], [2, 4, 6]]
 
 def won?(board)
-  WIN_COMBINATIONS.detect do |win_combination|
-    if win_combination == "X" ||  win_combination == "O"
-      return win_combination.to_a
-    else
-      false
+   WIN_COMBINATIONS.detect do |combination|
+     if board[combination[0]] == "X" && board[combination[1]] == "X" && board[combination[2]] == "X"
+        return combination
+     end
    end
+end
+
+def full?(board)
+  board.all? do|position|
+    if position == "X" || position == "O"
+       true
+    end
   end
 end
